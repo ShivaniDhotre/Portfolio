@@ -12,19 +12,15 @@ class AboutSection extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 600;
-        final isTablet = constraints.maxWidth < 900;
-
-        final hPad = isMobile
-            ? kDefaultPadding
-            : isTablet
-                ? kDefaultPadding * 2
-                : kDefaultPadding * 3;
 
         return Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
-          padding: EdgeInsets.symmetric(horizontal: hPad),
-          child: isMobile
+          padding: EdgeInsets.symmetric(horizontal: isMobile ? kDefaultPadding : 0),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1110),
+              child: isMobile
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -63,6 +59,8 @@ class AboutSection extends StatelessWidget {
                     ),
                   ],
                 ),
+            ),
+          ),
         );
       },
     );

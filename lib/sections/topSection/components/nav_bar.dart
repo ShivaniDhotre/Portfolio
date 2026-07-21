@@ -98,65 +98,74 @@ class _NavBarState extends State<NavBar> {
         ),
         // Mobile dropdown menu
         if (isMobile && _menuOpen)
-          ClipRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1A4A5A).withValues(alpha: 0.55),
-                  border: Border(
-                    bottom: BorderSide(
-                        color: const Color(0xFFCEE4FD).withValues(alpha: 0.2)),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: List.generate(
-                    _items.length,
-                    (i) => InkWell(
-        onTap: () => setState(() {
-                        _selectedIndex = i;
-                        _menuOpen = false;
-                        widget.onNavTap?.call(i);
-                      }),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 16),
-                        decoration: BoxDecoration(
-                          color: _selectedIndex == i
-                              ? const Color(0xFFCEE4FD).withValues(alpha: 0.12)
-                              : Colors.transparent,
-                          border: Border(
-                            bottom: BorderSide(
-                                color: const Color(0xFFCEE4FD)
-                                    .withValues(alpha: 0.1)),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            if (_selectedIndex == i)
-                              Container(
-                                width: 3,
-                                height: 18,
-                                margin: const EdgeInsets.only(right: 12),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFCEE4FD),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                              ),
-                            Text(
-                              _items[i],
-                              style: TextStyle(
-                                color: _selectedIndex == i
-                                    ? const Color(0xFFCEE4FD)
-                                    : Colors.white70,
-                                fontSize: 15,
-                                fontWeight: _selectedIndex == i
-                                    ? FontWeight.w600
-                                    : FontWeight.normal,
+          Align(
+            alignment: Alignment.topRight,
+            child: SizedBox(
+              width: 220,
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1A4A5A).withValues(alpha: 0.55),
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12),
+                      ),
+                      border: Border.all(
+                        color: const Color(0xFFCEE4FD).withValues(alpha: 0.2),
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: List.generate(
+                        _items.length,
+                        (i) => InkWell(
+                          onTap: () => setState(() {
+                            _selectedIndex = i;
+                            _menuOpen = false;
+                            widget.onNavTap?.call(i);
+                          }),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 16),
+                            decoration: BoxDecoration(
+                              color: _selectedIndex == i
+                                  ? const Color(0xFFCEE4FD).withValues(alpha: 0.12)
+                                  : Colors.transparent,
+                              border: Border(
+                                bottom: BorderSide(
+                                    color: const Color(0xFFCEE4FD)
+                                        .withValues(alpha: 0.1)),
                               ),
                             ),
-                          ],
+                            child: Row(
+                              children: [
+                                if (_selectedIndex == i)
+                                  Container(
+                                    width: 3,
+                                    height: 18,
+                                    margin: const EdgeInsets.only(right: 12),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFCEE4FD),
+                                      borderRadius: BorderRadius.circular(2),
+                                    ),
+                                  ),
+                                Text(
+                                  _items[i],
+                                  style: TextStyle(
+                                    color: _selectedIndex == i
+                                        ? const Color(0xFFCEE4FD)
+                                        : Colors.white70,
+                                    fontSize: 15,
+                                    fontWeight: _selectedIndex == i
+                                        ? FontWeight.w600
+                                        : FontWeight.normal,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),

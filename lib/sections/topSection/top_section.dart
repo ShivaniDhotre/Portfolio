@@ -8,12 +8,15 @@ class TopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
       width: double.infinity,
+      constraints: BoxConstraints(minHeight: screenHeight),
       decoration: const BoxDecoration(
+        color: Color(0xFF2A7A8C),
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage("assets/images/background.png"),
+          image: AssetImage("assets/images/background.webp"),
         ),
       ),
       child: Column(
