@@ -3,15 +3,15 @@ import 'package:web_app/models/RecentWork.dart';
 import '../../../constants.dart';
 
 const List<Color> _cardColors = [
-  Color(0xFFFFF8E7),
-  Color(0xFFE0F5F5),
-  Color(0xFFFFE4E4),
+  Color(0xFFE8F4FF),  // light blue
+  Color(0xFFEAFFF2),  // light green
+  Color(0xFFFFF8E7),  // light yellow
 ];
 
 const List<Color> _accentColors = [
-  Color(0xFFD4920A),
-  Color(0xFF00B5AA),
-  Color(0xFFFF6B6B),
+  kPrimaryColor,
+  kAccentColor,
+  kAccentYellow,
 ];
 
 class RecentWorkCard extends StatefulWidget {
@@ -48,7 +48,7 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [if (isHover) kDefaultCardShadow],
+          boxShadow: [if (isHover) kHoverShadow],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

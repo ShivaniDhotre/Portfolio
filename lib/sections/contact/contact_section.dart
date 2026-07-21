@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:web_app/components/default_button.dart';
@@ -26,7 +25,7 @@ class ContactSection extends StatelessWidget {
           SectionTitle(
             title: "Contact Me",
             subTitle: "For Project inquiry and information",
-            color: Color(0xFF07E24A),
+            color: kAccentColor,
           ),
           ContactBox()
         ],

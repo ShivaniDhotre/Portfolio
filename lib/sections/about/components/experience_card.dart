@@ -14,9 +14,9 @@ class ExperienceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      padding: EdgeInsets.all(kDefaultPadding),
-      height: 240,
-      width: 255,
+      padding: EdgeInsets.all(kDefaultPadding * 0.8),
+      height: 200,
+      width: 220,
       decoration: BoxDecoration(
         color: Color(0xFFF7E8FF),
         borderRadius: BorderRadius.circular(10),
@@ -27,9 +27,9 @@ class ExperienceCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
               blurRadius: 6,
-              color: Color(0xFFA600FF).withOpacity(0.25),
+              color: Color(0xFFA600FF).withValues(alpha: 0.25),
             ),
           ],
         ),
@@ -41,17 +41,17 @@ class ExperienceCard extends StatelessWidget {
                 Text(
                   numOfExp,
                   style: TextStyle(
-                    fontSize: 100,
+                    fontSize: 90,
                     fontWeight: FontWeight.bold,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
                       ..strokeWidth = 6
-                      ..color = Color(0xFFDFA3FF).withOpacity(0.5),
+                      ..color = Color(0xFFDFA3FF).withValues(alpha: 0.5),
                     shadows: [
                       BoxShadow(
-                        offset: Offset(0, 5),
+                        offset: const Offset(0, 5),
                         blurRadius: 10,
-                        color: Color(0xFFA600FF).withOpacity(0.5),
+                        color: Color(0xFFA600FF).withValues(alpha: 0.5),
                       ),
                     ],
                   ),
@@ -60,7 +60,7 @@ class ExperienceCard extends StatelessWidget {
                   numOfExp,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 100,
+                    fontSize: 90,
                     color: Colors.white,
                   ),
                 )

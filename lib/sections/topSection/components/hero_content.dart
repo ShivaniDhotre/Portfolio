@@ -18,11 +18,8 @@ class _HeroContentState extends State<HeroContent>
   late AnimationController _fadeCtrl;
   late Animation<double> _fade;
 
-  late AnimationController _rotateCtrl;
   late AnimationController _floatCtrl;
   late Animation<double> _float;
-  late AnimationController _pulseCtrl;
-  late Animation<double> _pulse;
 
   @override
   void initState() {
@@ -33,29 +30,17 @@ class _HeroContentState extends State<HeroContent>
       ..forward();
     _fade = CurvedAnimation(parent: _fadeCtrl, curve: Curves.easeOut);
 
-    _rotateCtrl = AnimationController(
-        vsync: this, duration: const Duration(seconds: 12))
-      ..repeat();
-
     _floatCtrl = AnimationController(
-        vsync: this, duration: const Duration(seconds: 3))
+        vsync: this, duration: const Duration(seconds: 4))
       ..repeat(reverse: true);
-    _float = Tween<double>(begin: -10, end: 10).animate(
+    _float = Tween<double>(begin: -8, end: 8).animate(
         CurvedAnimation(parent: _floatCtrl, curve: Curves.easeInOut));
-
-    _pulseCtrl = AnimationController(
-        vsync: this, duration: const Duration(seconds: 2))
-      ..repeat(reverse: true);
-    _pulse = Tween<double>(begin: 0.15, end: 0.35).animate(
-        CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut));
   }
 
   @override
   void dispose() {
     _fadeCtrl.dispose();
-    _rotateCtrl.dispose();
     _floatCtrl.dispose();
-    _pulseCtrl.dispose();
     super.dispose();
   }
 
@@ -290,7 +275,7 @@ class _HeroContentState extends State<HeroContent>
 
     return Center(
       child: AnimatedBuilder(
-        animation: Listenable.merge([_rotateCtrl, _floatCtrl, _pulseCtrl]),
+        animation: _floatCtrl,
         builder: (context, _) {
           return Transform.translate(
             offset: Offset(0, _float.value),
@@ -300,57 +285,11 @@ class _HeroContentState extends State<HeroContent>
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  Transform.rotate(
-                    angle: _rotateCtrl.value * 2 * 3.1416,
-                    child: _ring(avatarSize, 0.12),
-                  ),
-                  Transform.rotate(
-                    angle: -_rotateCtrl.value * 2 * 3.1416,
-                    child: _ring(avatarSize * 0.86, 0.18),
-                  ),
-                  _ring(avatarSize * 0.72, 0.25),
-                  Transform.rotate(
-                    angle: -0.4 + _rotateCtrl.value * 2 * 3.1416 * 0.5,
-                    child: Container(
-                      width: avatarSize * 0.94,
-                      height: avatarSize * 0.94,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.15),
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Transform.rotate(
-                    angle: 0.9 - _rotateCtrl.value * 2 * 3.1416 * 0.3,
-                    child: Container(
-                      width: avatarSize * 0.83,
-                      height: avatarSize * 0.83,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.1),
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: photoSize + 10,
-                    height: photoSize + 10,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white.withValues(alpha: _pulse.value),
-                          blurRadius: 50,
-                          spreadRadius: 8,
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Static rings - no rotation
+                  _ring(avatarSize, 0.12),
+                  _ring(avatarSize * 0.86, 0.15),
+                  _ring(avatarSize * 0.72, 0.20),
+                  // Photo with border
                   Container(
                     width: photoSize,
                     height: photoSize,
@@ -360,12 +299,21 @@ class _HeroContentState extends State<HeroContent>
                         color: Colors.white.withValues(alpha: 0.5),
                         width: 2.5,
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          blurRadius: 30,
+                          spreadRadius: 5,
+                        ),
+                      ],
                     ),
                     child: ClipOval(
                       child: Image.asset(
                         "assets/images/profile_image.jpeg",
                         fit: BoxFit.cover,
                         alignment: Alignment.topCenter,
+                        cacheWidth: photoSize.toInt() * 2,
+                        cacheHeight: photoSize.toInt() * 2,
                       ),
                     ),
                   ),

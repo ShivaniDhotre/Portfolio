@@ -39,7 +39,7 @@ class SkillsSection extends StatelessWidget {
                   SectionTitle(
                     title: "Skills",
                     subTitle: "Technologies I work with",
-                    color: const Color(0xFF00B1FF),
+                    color: kPrimaryColor,
                   ),
                   SizedBox(height: kDefaultPadding * (isMobile ? 1 : 1.5)),
                   Wrap(
@@ -127,7 +127,7 @@ class _SkillTileState extends State<_SkillTile> {
         width: widget.tileSize,
         height: widget.tileSize,
         decoration: BoxDecoration(
-          color: _hovered ? const Color(0xFFF0F4F8) : const Color(0xFFF8FAFB),
+          color: _hovered ? kBgLighter : kBgLight,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: _hovered
@@ -135,15 +135,7 @@ class _SkillTileState extends State<_SkillTile> {
                 : const Color(0xFFE0E8F0),
             width: 1.5,
           ),
-          boxShadow: _hovered
-              ? [
-                  BoxShadow(
-                    color: widget.skill.color.withValues(alpha: 0.25),
-                    blurRadius: 16,
-                    spreadRadius: 1,
-                  )
-                ]
-              : [],
+          boxShadow: _hovered ? [kHoverShadow] : [],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

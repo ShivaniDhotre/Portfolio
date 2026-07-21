@@ -36,7 +36,7 @@ class _ServiceCardState extends State<ServiceCard> {
         decoration: BoxDecoration(
           color: services[widget.index].color,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [if (isHover) kDefaultCardShadow],
+          boxShadow: [if (isHover) kHoverShadow],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,9 +52,9 @@ class _ServiceCardState extends State<ServiceCard> {
                 boxShadow: [
                   if (!isHover)
                     BoxShadow(
-                      offset: Offset(0, 20),
-                      blurRadius: 30,
-                      color: Colors.black.withOpacity(0.1),
+                      offset: const Offset(0, 4),
+                      blurRadius: 12,
+                      color: Colors.black.withValues(alpha: 0.06),
                     ),
                 ],
               ),

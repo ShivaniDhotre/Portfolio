@@ -27,9 +27,9 @@ class EducationSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SectionTitle(
-                color: const Color(0xFFFF0000),
                 title: "Education",
                 subTitle: "My Academic Background",
+                color: kAccentColor,
               ),
               SizedBox(height: kDefaultPadding * 1.5),
               isMobile
@@ -54,27 +54,27 @@ class EducationSection extends StatelessWidget {
 
   List<Widget> _cards() => [
         _EduCard(
-          color: const Color(0xFFE0F5F5),
+          color: kPrimaryLightColor.withValues(alpha: 0.3),
           icon: Icons.school_outlined,
-          iconColor: const Color(0xFF00B5AA),
+          iconColor: kPrimaryColor,
           degree: "BE in Computer Science",
           institution: "PVPIT College, Bavdhan, Pune",
           year: "2021",
           grade: "PVPIT",
         ),
         _EduCard(
-          color: const Color(0xFFE8F5E0),
+          color: kAccentColor.withValues(alpha: 0.15),
           icon: Icons.menu_book_outlined,
-          iconColor: const Color(0xFF5BAD3E),
+          iconColor: kAccentColor,
           degree: "Diploma in Computer Science",
           institution: "Eklavya Polytechnic, Kothrud, Pune",
           year: "2018",
           grade: "Eklavya Polytechnic",
         ),
         _EduCard(
-          color: const Color(0xFFFFF8E7),
+          color: kAccentYellow.withValues(alpha: 0.15),
           icon: Icons.auto_stories_outlined,
-          iconColor: const Color(0xFFD4920A),
+          iconColor: kAccentYellow,
           degree: "HSC (12th)",
           institution: "HRV Jr. College, Shivaji Nagar, Pune",
           year: "2015",
@@ -121,7 +121,7 @@ class _EduCardState extends State<_EduCard> {
         decoration: BoxDecoration(
           color: widget.color,
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [if (_hovered) kDefaultCardShadow],
+          boxShadow: [if (_hovered) kHoverShadow],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,12 +134,11 @@ class _EduCardState extends State<_EduCard> {
                 color: Colors.white,
                 shape: BoxShape.circle,
                 boxShadow: [
-                  if (!_hovered)
-                    BoxShadow(
-                      offset: const Offset(0, 8),
-                      blurRadius: 16,
-                      color: Colors.black.withValues(alpha: 0.08),
-                    ),
+                  BoxShadow(
+                    offset: const Offset(0, 4),
+                    blurRadius: 12,
+                    color: Colors.black.withValues(alpha: 0.06),
+                  ),
                 ],
               ),
               child: Icon(widget.icon, color: widget.iconColor, size: 26),

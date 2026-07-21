@@ -20,7 +20,7 @@ class ExperienceSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SectionTitle(
-                    color: const Color(0xFF0080FF),
+                    color: kPrimaryColor,
                     title: "Experience",
                     subTitle: "My Work Journey",
                   ),
@@ -46,18 +46,7 @@ class _ExperienceCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, 4),
-            blurRadius: 24,
-            color: const Color(0xFF0080FF).withOpacity(0.08),
-          ),
-          BoxShadow(
-            offset: const Offset(0, 1),
-            blurRadius: 4,
-            color: Colors.black.withOpacity(0.04),
-          ),
-        ],
+        boxShadow: [kDefaultCardShadow],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
@@ -68,11 +57,11 @@ class _ExperienceCard extends StatelessWidget {
               // Left accent bar
               Container(
                 width: 4,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Color(0xFF0080FF), Color(0xFF00C6FF)],
+                    colors: [kPrimaryColor, kPrimaryColor.withValues(alpha: 0.7)],
                   ),
                 ),
               ),
@@ -126,9 +115,7 @@ class _ExperienceCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFF0080FF), Color(0xFF00C6FF)],
-              ),
+              color: kPrimaryColor,
               borderRadius: BorderRadius.circular(20),
             ),
             child: const Text(
@@ -157,17 +144,17 @@ class _ExperienceCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFE8F4FF),
+                  color: kPrimaryLightColor.withValues(alpha: 0.4),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: const Icon(Icons.work_outline_rounded, size: 13, color: Color(0xFF0080FF)),
+                child: Icon(Icons.work_outline_rounded, size: 13, color: kPrimaryColor),
               ),
               const SizedBox(width: 8),
               const Text(
                 "Flutter Developer",
                 style: TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF0080FF),
+                  color: kPrimaryColor,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -232,7 +219,7 @@ class _ExperienceCard extends StatelessWidget {
           width: 3,
           height: 16,
           decoration: BoxDecoration(
-            color: const Color(0xFF0080FF),
+            color: kPrimaryColor,
             borderRadius: BorderRadius.circular(2),
           ),
         ),
@@ -242,7 +229,7 @@ class _ExperienceCard extends StatelessWidget {
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF0D1B2A),
+            color: kTextDarkColor,
             letterSpacing: 0.2,
           ),
         ),
@@ -261,7 +248,7 @@ class _ExperienceCard extends StatelessWidget {
             width: 5,
             height: 5,
             decoration: const BoxDecoration(
-              color: Color(0xFF0080FF),
+              color: kPrimaryColor,
               shape: BoxShape.circle,
             ),
           ),
@@ -291,15 +278,15 @@ class _Tag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFE8F4FF),
+        color: kPrimaryLightColor.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0xFFB8D8F8)),
+        border: Border.all(color: kPrimaryLightColor),
       ),
       child: Text(
         label,
         style: const TextStyle(
           fontSize: 13,
-          color: Color(0xFF0080FF),
+          color: kPrimaryColor,
           fontWeight: FontWeight.w500,
         ),
       ),

@@ -32,7 +32,7 @@ class RecentWorkSection extends StatelessWidget {
           SectionTitle(
             title: "Recent Works",
             subTitle: "My Projects",
-            color: Color(0xFFFFB100),
+            color: kAccentYellow,
           ),
           SizedBox(height: kDefaultPadding * 1.5),
           Padding(
