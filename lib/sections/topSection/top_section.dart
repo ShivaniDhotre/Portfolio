@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'components/nav_bar.dart';
 import 'components/hero_content.dart';
 
 class TopSection extends StatelessWidget {
@@ -21,7 +20,7 @@ class TopSection extends StatelessWidget {
       ),
       child: Column(
         children: [
-          NavBar(onNavTap: onNavTap),
+          const SizedBox(height: 72), // reserve space for the floating NavBar
           HeroContent(onSeeMyWork: () => onNavTap?.call(3)),
         ],
       ),

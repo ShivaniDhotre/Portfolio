@@ -80,7 +80,10 @@ class _ContactFormState extends State<ContactForm> {
   static const _formspreeId = 'mwvgblaq';
 
   Future<void> _submit() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) {
+      _showSnackbar('Please fix the errors before submitting.');
+      return;
+    }
 
     setState(() => _isLoading = true);
 
@@ -99,7 +102,7 @@ class _ContactFormState extends State<ContactForm> {
         _nameController.clear();
         _emailController.clear();
         _messageController.clear();
-        _showSnackbar('Message sent successfully!', success: true);
+        _showSuccessDialog();
       } else {
         _showSnackbar('Failed to send. Please try again.');
       }
@@ -115,6 +118,68 @@ class _ContactFormState extends State<ContactForm> {
       SnackBar(
         content: Text(message),
         backgroundColor: success ? Colors.green : Colors.red,
+      ),
+    );
+  }
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 380),
+          child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 36),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 72,
+                height: 72,
+                decoration: BoxDecoration(
+                  color: kAccentColor.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.check_circle_rounded,
+                    color: kAccentColor, size: 40),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Message Sent!",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1A1A2E),
+                ),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                "Thanks for reaching out. I'll get back to you as soon as possible.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: kTextColor, height: 1.5),
+              ),
+              const SizedBox(height: 28),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kAccentColor,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+                  child: const Text("Done", style: TextStyle(fontSize: 15)),
+                ),
+              ),
+            ],
+          ),
+        ),
+        ),
       ),
     );
   }
@@ -171,7 +236,8 @@ class _ContactFormState extends State<ContactForm> {
                   ),
                   validator: (v) {
                     if (v == null || v.trim().isEmpty) return 'Email is required';
-                    if (!v.contains('@')) return 'Enter a valid email';
+                    final emailRegex = RegExp(r'^[\w\.\+\-]+@[\w\-]+\.[a-zA-Z]{2,}$');
+                    if (!emailRegex.hasMatch(v.trim())) return 'Enter a valid email address';
                     return null;
                   },
                 ),

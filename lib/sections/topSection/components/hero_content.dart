@@ -311,7 +311,7 @@ class _HeroContentState extends State<HeroContent>
                       child: Image.asset(
                         "assets/images/profile_image.jpeg",
                         fit: BoxFit.cover,
-                        alignment: Alignment.topCenter,
+                        alignment: const Alignment(0, -0.3),
                         cacheWidth: photoSize.toInt() * 2,
                         cacheHeight: photoSize.toInt() * 2,
                       ),

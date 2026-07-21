@@ -8,6 +8,7 @@ import 'package:web_app/sections/education/education_section.dart';
 import 'package:web_app/sections/experience/experience_section.dart';
 import 'package:web_app/sections/topSection/top_section.dart';
 import 'package:web_app/sections/footer/footer_section.dart';
+import 'package:web_app/sections/topSection/components/nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -92,37 +93,48 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     return Scaffold(
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          children: [
-            TopSection(onNavTap: (i) => _scrollTo(sectionKeys[i])),
-            SizedBox(height: kDefaultPadding * 2),
-            AboutSection(key: _aboutKey),
-            if (_showExperience)
-              ExperienceSection(key: _experienceKey)
-            else
-              const SizedBox(height: 400),
-            if (_showEducation)
-              EducationSection(key: _educationKey)
-            else
-              const SizedBox(height: 400),
-            if (_showProjects)
-              RecentWorkSection(key: _projectsKey, onHireMe: () => _scrollTo(_contactKey))
-            else
-              const SizedBox(height: 600),
-            if (_showSkills)
-              SkillsSection(key: _skillsKey)
-            else
-              const SizedBox(height: 300),
-            SizedBox(height: kDefaultPadding),
-            if (_showContact)
-              ContactSection(key: _contactKey)
-            else
-              const SizedBox(height: 500),
-            if (_showContact) FooterSection(),
-          ],
-        ),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              children: [
+                TopSection(onNavTap: (i) => _scrollTo(sectionKeys[i])),
+                SizedBox(height: kDefaultPadding * 2),
+                AboutSection(key: _aboutKey),
+                if (_showExperience)
+                  ExperienceSection(key: _experienceKey)
+                else
+                  const SizedBox(height: 400),
+                if (_showEducation)
+                  EducationSection(key: _educationKey)
+                else
+                  const SizedBox(height: 400),
+                if (_showProjects)
+                  RecentWorkSection(key: _projectsKey, onHireMe: () => _scrollTo(_contactKey))
+                else
+                  const SizedBox(height: 600),
+                if (_showSkills)
+                  SkillsSection(key: _skillsKey)
+                else
+                  const SizedBox(height: 300),
+                SizedBox(height: kDefaultPadding),
+                if (_showContact)
+                  ContactSection(key: _contactKey)
+                else
+                  const SizedBox(height: 500),
+                if (_showContact) FooterSection(),
+              ],
+            ),
+          ),
+          // Sticky navbar pinned at top
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: NavBar(onNavTap: (i) => _scrollTo(sectionKeys[i])),
+          ),
+        ],
       ),
     );
   }

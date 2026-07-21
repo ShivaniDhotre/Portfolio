@@ -33,65 +33,69 @@ class _NavBarState extends State<NavBar> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Container(
-          width: double.infinity,
-          height: 72,
-          padding: EdgeInsets.symmetric(horizontal: hPad),
-          color: Colors.black.withValues(alpha: 0.25),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1200),
-              child: Row(
-                children: [
-                  // Brand
-                  RichText(
-                    text: const TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Shivani ",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+        ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+            child: Container(
+              width: double.infinity,
+              height: 72,
+              padding: EdgeInsets.symmetric(horizontal: hPad),
+              color: Colors.black.withValues(alpha: 0.35),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1200),
+                  child: Row(
+                    children: [
+                      // Brand
+                      RichText(
+                        text: const TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Shivani ",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "Dhotre",
+                              style: TextStyle(
+                                color: Color(0xFFCEE4FD),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                        TextSpan(
-                          text: "Dhotre",
-                          style: TextStyle(
-                            color: Color(0xFFCEE4FD),
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      const Spacer(),
+                      if (!isMobile) ...[
+                        ...List.generate(_items.length, (i) => _buildNavItem(i)),
+                        const SizedBox(width: 24),
+                        _socialIcon("assets/images/github_logo.png",
+                            "https://github.com/ShivaniDhotre"),
+                        const SizedBox(width: 12),
+                        _socialIcon("assets/images/linkdin_logo.png",
+                            "https://www.linkedin.com/in/shivani-dhotre-226046175"),
+                      ] else ...[
+                        _socialIcon("assets/images/github_logo.png",
+                            "https://github.com/ShivaniDhotre"),
+                        const SizedBox(width: 10),
+                        _socialIcon("assets/images/linkdin_logo.png",
+                            "https://www.linkedin.com/in/shivani-dhotre-226046175"),
+                        const SizedBox(width: 12),
+                        IconButton(
+                          onPressed: () => setState(() => _menuOpen = !_menuOpen),
+                          icon: Icon(
+                            _menuOpen ? Icons.close : Icons.menu,
+                            color: Colors.white,
                           ),
                         ),
                       ],
-                    ),
+                    ],
                   ),
-                  const Spacer(),
-                  if (!isMobile) ...[
-                    ...List.generate(_items.length, (i) => _buildNavItem(i)),
-                    const SizedBox(width: 24),
-                    _socialIcon("assets/images/github_logo.png",
-                        "https://github.com/ShivaniDhotre"),
-                    const SizedBox(width: 12),
-                    _socialIcon("assets/images/linkdin_logo.png",
-                        "https://www.linkedin.com/in/shivani-dhotre-226046175"),
-                  ] else ...[
-                    _socialIcon("assets/images/github_logo.png",
-                        "https://github.com/ShivaniDhotre"),
-                    const SizedBox(width: 10),
-                    _socialIcon("assets/images/linkdin_logo.png",
-                        "https://www.linkedin.com/in/shivani-dhotre-226046175"),
-                    const SizedBox(width: 12),
-                    IconButton(
-                      onPressed: () =>
-                          setState(() => _menuOpen = !_menuOpen),
-                      icon: Icon(
-                        _menuOpen ? Icons.close : Icons.menu,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ],
+                ),
               ),
             ),
           ),
