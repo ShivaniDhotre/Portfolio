@@ -23,7 +23,7 @@ class GlassContent extends StatelessWidget {
           constraints:
               BoxConstraints(maxWidth: 1110, maxHeight: size.height * 0.7),
           width: double.infinity,
-          color: Colors.white.withOpacity(0),
+          color: Colors.white.withValues(alpha: 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,

@@ -31,7 +31,7 @@ class AboutSection extends StatelessWidget {
                           "Flutter Developer with hands-on experience building feature-rich mobile apps. Delivered impactful projects including a Fort Management app, a Real-Time POS Business platform, and a Parenting & Kids Growth Tracker.",
                     ),
                     SizedBox(height: kDefaultPadding * 1.5),
-                    ExperienceCard(numOfExp: "6+"),
+                    ExperienceCard(numOfExp: "1+"),
                     SizedBox(height: kDefaultPadding * 1.5),
                     AboutSectionText(
                       text:
@@ -50,7 +50,7 @@ class AboutSection extends StatelessWidget {
                             "Flutter Developer with hands-on experience building feature-rich mobile apps. Delivered impactful projects including a Fort Management app, a Real-Time POS Business platform, and a Parenting & Kids Growth Tracker.",
                       ),
                     ),
-                    ExperienceCard(numOfExp: "6+"),
+                    ExperienceCard(numOfExp: "1+"),
                     Expanded(
                       child: AboutSectionText(
                         text:

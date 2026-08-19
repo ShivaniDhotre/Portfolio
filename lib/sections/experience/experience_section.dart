@@ -161,7 +161,7 @@ class _ExperienceCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          _infoRow(Icons.calendar_today_outlined, "Jan 2025 – Present  ·  6+ Months"),
+          _infoRow(Icons.calendar_today_outlined, "Jan 2025 – Present  ·  1+ Year"),
           const SizedBox(height: 6),
           _infoRow(Icons.location_on_outlined, "On-site"),
         ],
